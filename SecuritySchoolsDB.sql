@@ -1,11 +1,13 @@
-
 /*-----------------------------------------SECURITY------------------------------------------------------*/
 /*------SEC.ROLES-------*/
+--
+DROP TABLE IF EXISTS "sec"."Roles";
+--
 CREATE TABLE IF NOT EXISTS "sec"."Roles"
 (
     "Id" BIGSERIAL PRIMARY KEY,
-    "NameFr" varchar(64) NOT NULL,
-	"NameAr" varchar(64) NOT NULL,
+    "RoleNameFr" varchar(64) NOT NULL,
+	"RoleNameAr" varchar(64) NOT NULL,
 	"CreatedBy" INT8,
 	"CreatedOn" TIMESTAMPTZ NOT NULL DEFAULT(NOW() at time zone 'utc'),
 	"UpdatedBy" INT8,
@@ -15,15 +17,18 @@ CREATE TABLE IF NOT EXISTS "sec"."Roles"
 
 --DATA Roles
 
-INSERT INTO "sec"."Roles" ("NameFr","NameAr")
+INSERT INTO "sec"."Roles" ("RoleNameFr","RoleNameAr")
 VALUES
 	('Manager', 'المسير'),
 	('Teacher', 'أستاذ'),
-	('Parent', 'الأب'),
+	('Parent', 'الولي'),
 	('Student', 'تلميذ')
 ON CONFLICT ("Id") DO NOTHING;
 
 /*------SEC.PRIVILEGES-------*/
+--
+DROP TABLE IF EXISTS "sec"."Privileges";
+--
 CREATE TABLE IF NOT EXISTS "sec"."Privileges"
 (
     "Id" BIGSERIAL PRIMARY KEY,
@@ -39,14 +44,16 @@ CREATE TABLE IF NOT EXISTS "sec"."Privileges"
 
 INSERT INTO "sec"."Privileges" ("Action")
 VALUES
-	('ListeTeachers'),
-	('ListeParents'),
-	('ListeStudents'),
+	('ListerTeachers'),
+	('ListerParents'),
+	('ListerStudents'),
 	('ManagerUsers'  )
 ON CONFLICT ("Id") DO NOTHING;
 
 /*---------SEC.USERS-----------*/
-
+--
+DROP TABLE IF EXISTS "sec"."Users";
+--
 CREATE TABLE IF NOT EXISTS "sec"."Users"
 (
     "Id" BIGSERIAL PRIMARY KEY,
@@ -74,9 +81,10 @@ ON CONFLICT ("Id") DO NOTHING;
 
 
 /*---------SEC.CREDENTIALES-----------*/
---  Juste to test Drop  whitout ERROR
+--  
 DROP TABLE IF EXISTS "sec"."Credentials";
 --
+/*
 CREATE TABLE IF NOT EXISTS "sec"."Credentials"
 (
     "Id" BIGSERIAL PRIMARY KEY,
@@ -89,6 +97,33 @@ CREATE TABLE IF NOT EXISTS "sec"."Credentials"
 	"DeletedOn" TIMESTAMPTZ,
     CONSTRAINT FK_Credentials_Users FOREIGN KEY("UserId") REFERENCES "sec"."Users"("Id")
 );
+*/
+
+CREATE TABLE IF NOT EXISTS "sec"."Credentials"
+(
+    "Id" BIGSERIAL PRIMARY KEY,
+    "UserId" INT8 NOT NULL,
+    "Password" VARCHAR(255) NOT NULL DEFAULT '',
+    "Notes" varchar(255) NOT NULL DEFAULT '',
+    "Token" varchar(512) NOT NULL DEFAULT '',
+    "TokenCreationDate" TIMESTAMPTZ,
+    "LastLoginDateTime" TIMESTAMPTZ NULL,
+    "LastPasswordChangedDateTime" TIMESTAMPTZ NULL,
+    "FailedPasswordAttemptCount" INT DEFAULT 0,
+    "FailedPasswordStartDateTime" TIMESTAMPTZ NULL,
+    "LastLockedOutDateTime" TIMESTAMPTZ NULL,
+    "LockedOutStatus" bool DEFAULT false NOT NULL,
+    "Status" SMALLINT NOT NULL DEFAULT 1,
+    "Version" INT8 NOT NULL DEFAULT 1,
+    "CreatedBy" INT8,
+    "CreatedOn" TIMESTAMPTZ NOT NULL DEFAULT(NOW() at time zone 'utc'),
+    "UpdatedBy" INT8,
+    "UpdatedOn" TIMESTAMPTZ,
+    "DeletedOn" TIMESTAMPTZ,
+    CONSTRAINT FK_Credentials_Users FOREIGN KEY("UserId") REFERENCES "sec"."Users"("Id")
+);
+
+
 
 --DATA Credentials
 
@@ -102,7 +137,9 @@ VALUES
 ON CONFLICT ("Id") DO NOTHING;
 
 /*--------SEC.UserRoles------------*/
-
+--
+DROP TABLE IF EXISTS "sec"."UserRoles";
+--
 CREATE TABLE IF NOT EXISTS "sec"."UserRoles"
 (
     "UserId" INTEGER NOT NULL,
@@ -139,7 +176,9 @@ VALUES
 	(5, 4);
 
 /*---------------SEC.RolePrivileges--------------*/
-
+--
+DROP TABLE IF EXISTS "sec"."RolePrivileges";
+--
 CREATE TABLE IF NOT EXISTS "sec"."RolePrivileges"
 (
     "RoleId"      INT8 NOT NULL,
@@ -173,7 +212,3 @@ VALUES
 	(2, 3),
 	(3, 2);
 /*-------------------------------------------------------FIN---------------------------------------------------------------------*/
-
-
-
-
