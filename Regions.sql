@@ -13,82 +13,14 @@ CREATE TABLE "ref"."Regions" (
 
 );
 /*
-COPY ref.regions
-FROM 'F:/plateFormeScolarity2026/donnees/Regionsclean.csv'
-DELIMITER ','
-CSV HEADER;
-*/
-
-/*
-INSERT INTO ref.Regions("RegionCode", "RegionNameFr", "RegionNameAr", "RegionPosteCode") VALUES
-('1', ' Adrar', ' أدرار', '1000'),
-('2', ' Chlef', '  الشلف', '2000'),
-('3', ' Laghouat', ' الأغواط', '3000'),
-('4', ' Oum El Bouaghi', ' أم البواقي', '4000'),
-('5', ' Batna', ' باتنة', '5000'),
-('6', ' Béjaïa', '  بجاية', '6000'),
-('7', ' Biskra', ' بسكرة', '7000'),
-('8', ' Béchar', ' بشار', '8000'),
-('9', ' Blida', ' البليدة', '9000'),
-('10', ' Bouira', ' البويرة', '10000'),
-('11', ' Tamanrasset', ' تمنراست', '11000'),
-('12', ' Tébessa', ' تبسة', '12000'),
-('13', ' Tlemcen', ' تلمسان', '13000'),
-('14', ' Tiaret', ' تيارت', '14000'),
-('15', ' Tizi Ouzou', ' تيزي وزو', '15000'),
-('16', ' Alger', ' الجزائر', '16000'),
-('17', ' Djelfa', ' الجلفة', '17000'),
-('18', ' Jijel', ' جيجل', '18000'),
-('19', ' Sétif', ' سطيف', '19000'),
-('20', ' Saïda', ' سعيدة', '20000'),
-('21', ' Skikda', ' سكيكدة', '21000'),
-('22', ' Sidi Bel Abbès', ' سيدي بلعباس', '22000'),
-('23', ' Annaba', ' عنابة', '23000'),
-('24', ' Guelma', ' قالمة', '24000'),
-('25', ' Constantine', ' قسنطينة', '25000'),
-('26', ' Médéa', ' المدية', '26000'),
-('27', ' Mostaganem', ' مستغانم', '27000'),
-('28', ' MSila', ' المسيلة', '28000'),
-('29', ' Mascara', ' معسكر', '29000'),
-('30', ' Ouargla', ' ورقلة', '30000'),
-('31', ' Oran', ' وهران', '31000'),
-('32', ' El Bayadh', ' البيض', '32000'),
-('33', ' Illizi', ' إليزي', '33000'),
-('34', ' Bordj Bou Arreridj', ' برج بوعريريج', '34000'),
-('35', ' Boumerdès', ' بومرداس', '35000'),
-('36', ' El Taref', ' الطارف', '36000'),
-('37', ' Tindouf', ' تندوف', '37000'),
-('38', ' Tissemsilt', ' تيسمسيلت', '38000'),
-('39', ' El Oued', ' الوادي', '39000'),
-('40', ' Khenchela', ' خنشلة', '40000'),
-('41', ' Souk Ahras', ' سوق أهراس', '41000'),
-('42', ' Tipaza', ' تيبازة', '42000'),
-('43', ' Mila', ' ميلة', '43000'),
-('44', ' Aïn Defla', ' عين الدفلة', '44000'),
-('45', ' Naâma', ' النعامة', '45000'),
-('46', ' Aïn Témouchent', ' عين تيموشنت', '46000'),
-('47', ' Ghardaïa', ' غرداية', '47000'),
-('48', ' Relizane', ' غليزان', '48000'),
-('49', ' Timimoun', ' تيميمون', '49000'),
-('50', ' Bordj Badji Mokhtar', ' برج باجي مختار', '50000'),
-('51', ' Ouled Djellal', ' أولاد جلال', '51000'),
-('52', ' Béni Abbès', ' بني عباس', '52000'),
-('53', ' In Salah', ' عين صالح', '53000'),
-('54', ' In Guezzam', ' عين قزام', '54000'),
-('55', ' Touggourt', ' تقرت', '55000'),
-('56', ' Djanet', ' جانت', '56000'),
-('57', ' El Meghaier', ' المغير', '57000'),
-('58', ' El Menia', ' المنيعة', '58000');
-
-
-COPY ref.Regions("RegionCode", "RegionNameAr", "RegionNameFr","RegionPosteCode")
+COPY ref.Regions("RegionCode", "RegionNameAr", "RegionNameFr","RegionPostalCode")
 FROM 'F:/plateFormeScolarity2026/donnees/Regionclean.csv'
 DELIMITER ','
 CSV HEADER
 ENCODING 'UTF8';
 */
 
-INSERT INTO "ref"."Regions"("RegionCode", "RegionNameAr", "RegionNameFr", "RegionPosteCode") VALUES
+INSERT INTO "ref"."Regions"("RegionCode", "RegionNameAr", "RegionNameFr", "RegionPostalCode") VALUES
 ('01', ' أدرار', ' Adrar', '01000'),
 ('02', '  الشلف', ' Chlef', '02000'),
 ('03', ' الأغواط', ' Laghouat', '03000'),
